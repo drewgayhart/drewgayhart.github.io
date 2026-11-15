@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | Your Name</title>
+  <meta name="description" content="Get in touch about projects, collaborations, or opportunities.">
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --surface: #ffffff;
+      --text: #1b1f24;
+      --muted: #4d5661;
+      --border: #8a939e;
+      --accent: #1d4ed8;
+      --accent-text: #ffffff;
+      --error: #b42318;
+      --success: #146c43;
+      --focus: #f59e0b;
+      --radius: 8px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0e1116;
+        --surface: #171b22;
+        --text: #e8ecf1;
+        --muted: #aab3bf;
+        --border: #6b7684;
+        --accent: #7aa2ff;
+        --accent-text: #0e1116;
+        --error: #ff8a80;
+        --success: #6ee7a8;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font: 1rem/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -4rem;
+      padding: .5rem 1rem;
+      background: var(--accent);
+      color: var(--accent-text);
+      border-radius: var(--radius);
+      z-index: 10;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    header, main, footer { max-width: 44rem; margin-inline: auto; padding-inline: 1rem; }
+    header { padding-block: 2rem 1rem; }
+    header a { color: var(--accent); }
+    h1 { font-size: 2rem; line-height: 1.2; margin: 1rem 0 .5rem; }
+    .lede { color: var(--muted); margin: 0; }
+
+    form {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-block: 1.5rem;
+    }
+
+    fieldset {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin: 0 0 1.5rem;
+      padding: 1rem 1.25rem 1.25rem;
+    }
+    legend { font-weight: 700; padding-inline: .5rem; }
+
+    .field { margin-bottom: 1.1rem; }
+    .field:last-child { margin-bottom: 0; }
+    .row { display: grid; gap: 1.1rem; grid-template-columns: 1fr 1fr; }
+    @media (max-width: 36rem) { .row { grid-template-columns: 1fr; } }
+
+    label, .label { display: block; font-weight: 600; margin-bottom: .3rem; }
+    .req { color: var(--error); }
+    .hint { display: block; color: var(--muted); font-size: .9rem; margin-bottom: .35rem; }
+
+    input[type="text"], input[type="email"], input[type="tel"], input[type="date"],
+    input[type="number"], input[type="file"], select, textarea {
+      width: 100%;
+      font: inherit;
+      color: var(--text);
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: .6rem .75rem;
+    }
+    textarea { min-height: 9rem; resize: vertical; }
+    input[type="range"] { width: 100%; accent-color: var(--accent); }
+
+    input:focus-visible, select:focus-visible, textarea:focus-visible,
+    button:focus-visible, a:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .choice { display: flex; align-items: flex-start; gap: .6rem; margin-bottom: .5rem; }
+    .choice input { width: 1.25rem; height: 1.25rem; margin-top: .2rem; accent-color: var(--accent); flex: none; }
+    .choice label { font-weight: 400; margin: 0; }
+
+    [aria-invalid="true"] { border-color: var(--error); }
+    .error { color: var(--error); font-size: .9rem; margin-top: .3rem; min-height: 0; }
+    .error:empty { display: none; }
+    .counter { text-align: right; color: var(--muted); font-size: .85rem; }
+
+    .actions { display: flex; gap: .75rem; flex-wrap: wrap; }
+    button {
+      font: inherit;
+      font-weight: 600;
+      padding: .7rem 1.4rem;
+      border-radius: var(--radius);
+      border: 2px solid var(--accent);
+      cursor: pointer;
+    }
+    button[type="submit"] { background: var(--accent); color: var(--accent-text); }
+    button[type="reset"] { background: transparent; color: var(--accent); }
+
+    #status { margin-top: 1rem; padding: 0; font-weight: 600; }
+    #status.ok { color: var(--success); }
+    #status.fail { color: var(--error); }
+
+    footer { padding-block: 0 3rem; color: var(--muted); font-size: .9rem; }
+
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contact-form">Skip to contact form</a>
+
+  <header>
+    <a href="index.html">&larr; Back to portfolio</a>
+    <h1>Get in touch</h1>
+    <p class="lede">Have a project, a question, or a role you'd like to talk about? Fill this in and I'll reply within two business days.</p>
+  </header>
+
+  <main id="main">
+    <form id="contact-form" action="https://example.com/your-form-endpoint" method="post" enctype="multipart/form-data" novalidate aria-describedby="form-note">
+      <p id="form-note">Fields marked <span class="req" aria-hidden="true">*</span><span class="visually-hidden"> (required)</span> are required.</p>
+
+      <fieldset>
+        <legend>Your details</legend>
+
+        <div class="row">
+          <div class="field">
+            <label for="name">Full name <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="name" name="name" autocomplete="name" required aria-describedby="name-error">
+            <div class="error" id="name-error"></div>
+          </div>
+
+          <div class="field">
+            <label for="email">Email address <span class="req" aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" autocomplete="email" required aria-describedby="email-error">
+            <div class="error" id="email-error"></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone number (optional)</label>
+          <span class="hint" id="phone-hint">Include the country code if you're outside the US.</span>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" aria-describedby="phone-hint">
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Your message</legend>
+
+        <div class="field">
+          <label for="subject">Subject <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="subject" name="subject" required aria-describedby="subject-error">
+          <div class="error" id="subject-error"></div>
+        </div>
+
+        <div class="field">
+          <label for="topic">What's this about?</label>
+          <select id="topic" name="topic">
+            <option value="">Choose a topic</option>
+            <option value="freelance">Freelance project</option>
+            <option value="fulltime">Full-time opportunity</option>
+            <option value="collab">Collaboration</option>
+            <option value="speaking">Speaking or mentoring</option>
+            <option value="feedback">Feedback on my work</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="message">Message <span class="req" aria-hidden="true">*</span></label>
+          <span class="hint" id="message-hint">Up to 1,000 characters.</span>
+          <textarea id="message" name="message" maxlength="1000" required aria-describedby="message-hint message-error message-count"></textarea>
+          <div class="counter" id="message-count" aria-live="off">0 / 1000</div>
+          <div class="error" id="message-error"></div>
+        </div>
+
+        <div class="field">
+          <label for="attachment">Attachment (optional)</label>
+          <span class="hint" id="file-hint">PDF, DOC, DOCX, PNG, or JPG. Max 5 MB.</span>
+          <input type="file" id="attachment" name="attachment" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg" aria-describedby="file-hint file-error">
+          <div class="error" id="file-error"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Project details (optional)</legend>
+
+        <div class="field">
+          <label for="deadline">Ideal start date</label>
+          <input type="date" id="deadline" name="deadline">
+        </div>
+
+        <div class="field">
+          <label for="budget">Budget in USD</label>
+          <span class="hint" id="budget-hint">A rough figure is fine.</span>
+          <input type="number" id="budget" name="budget" min="0" step="100" inputmode="numeric" aria-describedby="budget-hint">
+        </div>
+
+        <div class="field">
+          <label for="urgency">Urgency: <output id="urgency-out" for="urgency">3</output> of 5</label>
+          <input type="range" id="urgency" name="urgency" min="1" max="5" value="3" aria-describedby="urgency-hint">
+          <span class="hint" id="urgency-hint">1 means no rush, 5 means as soon as possible.</span>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>How should I reply?</legend>
+        <div class="field" role="radiogroup" aria-labelledby="contact-method-legend">
+          <span class="label" id="contact-method-legend">Preferred contact method</span>
+          <div class="choice">
+            <input type="radio" id="method-email" name="contact_method" value="email" checked>
+            <label for="method-email">Email</label>
+          </div>
+          <div class="choice">
+            <input type="radio" id="method-phone" name="contact_method" value="phone">
+            <label for="method-phone">Phone call</label>
+          </div>
+          <div class="choice">
+            <input type="radio" id="method-video" name="contact_method" value="video">
+            <label for="method-video">Video call</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="label" id="services-label">Services you're interested in</span>
+          <div role="group" aria-labelledby="services-label">
+            <div class="choice">
+              <input type="checkbox" id="svc-web" name="services" value="web">
+              <label for="svc-web">Web development</label>
+            </div>
+            <div class="choice">
+              <input type="checkbox" id="svc-design" name="services" value="design">
+              <label for="svc-design">Design</label>
+            </div>
+            <div class="choice">
+              <input type="checkbox" id="svc-consult" name="services" value="consulting">
+              <label for="svc-consult">Consulting</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="choice">
+            <input type="checkbox" id="newsletter" name="newsletter" value="yes">
+            <label for="newsletter">Send me occasional updates about new work</label>
+          </div>
+          <div class="choice">
+            <input type="checkbox" id="consent" name="consent" value="yes" required aria-describedby="consent-error">
+            <label for="consent">I agree that my details may be used to respond to this message <span class="req" aria-hidden="true">*</span></label>
+          </div>
+          <div class="error" id="consent-error"></div>
+        </div>
+      </fieldset>
+
+      <div class="actions">
+        <button type="submit">Send message</button>
+        <button type="reset">Clear form</button>
+      </div>
+
+      <div id="status" role="status" aria-live="polite"></div>
+    </form>
+  </main>
+
+  <footer>
+    <p>Prefer email? Write to <a href="mailto:you@example.com">you@example.com</a>.</p>
+  </footer>
+
+  <style>
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+  </style>
+
+  <script>
+    (function () {
+      var form = document.getElementById('contact-form');
+      var status = document.getElementById('status');
+      var message = document.getElementById('message');
+      var counter = document.getElementById('message-count');
+      var urgency = document.getElementById('urgency');
+      var urgencyOut = document.getElementById('urgency-out');
+      var file = document.getElementById('attachment');
+      var MAX_BYTES = 5 * 1024 * 1024;
+
+      // Earliest selectable start date is today.
+      var d = new Date();
+      var iso = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      document.getElementById('deadline').min = iso;
+
+      message.addEventListener('input', function () {
+        counter.textContent = message.value.length + ' / 1000';
+      });
+      urgency.addEventListener('input', function () {
+        urgencyOut.textContent = urgency.value;
+      });
+
+      function setError(input, errorId, text) {
+        var box = document.getElementById(errorId);
+        box.textContent = text;
+        if (text) { input.setAttribute('aria-invalid', 'true'); }
+        else { input.removeAttribute('aria-invalid'); }
+        return !text;
+      }
+
+      function check() {
+        var problems = [];
+        var name = form.elements.name, email = form.elements.email,
+            subject = form.elements.subject, consent = form.elements.consent;
+
+        if (!setError(name, 'name-error', name.value.trim() ? '' : 'Enter your name.')) problems.push(name);
+
+        var emailText = '';
+        if (!email.value.trim()) emailText = 'Enter your email address.';
+        else if (!email.validity.valid) emailText = 'Enter a valid email, like name@example.com.';
+        if (!setError(email, 'email-error', emailText)) problems.push(email);
+
+        if (!setError(subject, 'subject-error', subject.value.trim() ? '' : 'Enter a subject.')) problems.push(subject);
+        if (!setError(message, 'message-error', message.value.trim() ? '' : 'Write a message.')) problems.push(message);
+
+        var fileText = '';
+        if (file.files.length && file.files[0].size > MAX_BYTES) fileText = 'That file is over 5 MB. Choose a smaller one.';
+        if (!setError(file, 'file-error', fileText)) problems.push(file);
+
+        if (!setError(consent, 'consent-error', consent.checked ? '' : 'Please tick this box to continue.')) problems.push(consent);
+
+        return problems;
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        status.className = '';
+        var problems = check();
+        if (problems.length) {
+          status.className = 'fail';
+          status.textContent = 'Please fix ' + problems.length + (problems.length === 1 ? ' problem' : ' problems') + ' and try again.';
+          problems[0].focus();
+          return;
+        }
+        // Demo behaviour: swap this block for fetch(form.action, { method: 'POST', body: new FormData(form) })
+        // or remove preventDefault() so the form posts normally to your endpoint.
+        status.className = 'ok';
+        status.textContent = 'Thanks, your message is ready to send. (Connect the form to an endpoint to deliver it.)';
+      });
+
+      form.addEventListener('reset', function () {
+        status.textContent = '';
+        status.className = '';
+        counter.textContent = '0 / 1000';
+        urgencyOut.textContent = '3';
+        form.querySelectorAll('[aria-invalid]').forEach(function (el) { el.removeAttribute('aria-invalid'); });
+        form.querySelectorAll('.error').forEach(function (el) { el.textContent = ''; });
+      });
+    })();
+  </script>
+</body>
+</html>
