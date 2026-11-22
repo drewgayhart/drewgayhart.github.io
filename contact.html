@@ -137,5 +137,31 @@
 
     <p>Created by Dr.G23</p>
 
+    <script>
+    function checkRating() {
+
+        let rating = Number(
+            document.getElementById("rating").value
+        );
+
+        let message;
+
+        if (rating >= 8 && rating <= 10) {
+            message = "Thank you! I'm glad you enjoyed my website.";
+        }
+        else if (rating >= 5 && rating < 8) {
+            message = "Thanks! I'll keep working to improve it.";
+        }
+        else if (rating >= 1 && rating < 5) {
+            message = "Thanks for the feedback. I have room to improve!";
+        }
+        else {
+            message = "Please enter a rating between 1 and 10.";
+        }
+
+        document.getElementById("result").textContent = message;
+    }
+</script>
+
 </body>
 </html>
